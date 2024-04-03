@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">fitnessApp</string>
+    <string name="app_text">"Diet and Fitness App"</string>
+    <string name="fit_text">"Fitness Is The Key"</string>
+    <string name="sign_email_text">"Sign in with Email"</string>
+    <string name="sign_google_text">"Sign in with Google"</string>
 </resources>
