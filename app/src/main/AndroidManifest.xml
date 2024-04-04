@@ -15,6 +15,9 @@
         android:theme="@style/Theme.FitnessApp"
         tools:targetApi="31">
         <activity
+            android:name=".feature.auth.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".feature.welcome.launch.view.LaunchActivity"
             android:exported="false" />
         <activity
