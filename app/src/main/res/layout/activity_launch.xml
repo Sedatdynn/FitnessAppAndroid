@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="8dp"
+    android:paddingHorizontal="8dp"
     tools:context=".feature.welcome.launch.view.LaunchActivity">
 
     <ImageView

@@ -5,9 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="8dp"
     tools:context=".feature.auth.LoginActivity">
     <ImageView
-        android:id="@+id/launch_logo"
+        android:id="@+id/login_logo"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_marginTop="100dp"
@@ -17,5 +18,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
+    <EditText
+        android:id="@+id/login_et_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/login_logo"
+        android:layout_marginTop="48dp"
+        android:drawableLeft="@drawable/ic_email"
+        android:drawableTint="@color/design_default_color_primary"
+        android:hint="enter your email"
+        android:drawablePadding="6dp"
+        android:background="@drawable/shape_border"
+        />
+    <EditText
+        android:id="@+id/login_et_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/login_et_email"
+        android:layout_marginTop="16dp"
+        android:drawableLeft="@drawable/password"
+        android:drawableTint="@color/design_default_color_primary"
+        android:hint="enter your password"
+        android:inputType="textPassword"
+        android:drawablePadding="6dp"
+        android:background="@drawable/shape_border"
+        />
+    <TextView
+        android:id="@+id/login_et_forgot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/login_et_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="right"
+        android:layout_margin="3dp"
+        android:text="Forgot password?"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="Log in"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_et_forgot"
+        app:layout_constraintVertical_bias="0.355"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
