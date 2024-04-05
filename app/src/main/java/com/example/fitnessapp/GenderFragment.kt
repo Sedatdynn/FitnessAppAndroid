@@ -7,17 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation
 import com.example.fitnessapp.databinding.FragmentGenderBinding
-
 
 class GenderFragment : Fragment() {
     private lateinit var binding: FragmentGenderBinding
-    private var selectedColor: Int = 0
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,34 +23,25 @@ class GenderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        selectedColor = context?.let {
-            ContextCompat.getColor(
-                it,
-                R.color.accent
-            )
-        } ?: Color.TRANSPARENT
-        onMaleClick()
-        onFemaleClick()
-    }
 
-    private fun onFemaleClick() {
-        binding.apply {
-            genderFemaleIcon.setOnClickListener {
-                genderMaleIcon.setBackgroundColor(Color.WHITE)
-                it.setBackgroundColor(selectedColor)
-            }
+        val selectedColor = ContextCompat.getColor(requireContext(), R.color.accent)
+
+        binding.genderFemaleIcon.setOnClickListener {
+            setGenderIconColors(Color.WHITE, selectedColor)
+        }
+
+        binding.genderMaleIcon.setOnClickListener {
+            setGenderIconColors(selectedColor, Color.WHITE)
+        }
+
+        binding.genderBtnNext.setOnClickListener {
+            Navigation.findNavController(it)
+                .navigate(R.id.action_genderFragment_to_birthDateFragment)
         }
     }
 
-    private fun onMaleClick() {
-        binding.apply {
-            genderMaleIcon.setOnClickListener {
-                genderFemaleIcon.setBackgroundColor(Color.WHITE)
-                it.setBackgroundColor(selectedColor)
-
-            }
-        }
+    private fun setGenderIconColors(maleColor: Int, femaleColor: Int) {
+        binding.genderMaleIcon.setBackgroundColor(maleColor)
+        binding.genderFemaleIcon.setBackgroundColor(femaleColor)
     }
-
-
 }

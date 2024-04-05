@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="8dp"
+
     tools:context=".BirthDateFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:id="@+id/birth_logo"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="100dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/birth_tv_title"
+        style="@style/LargeTitleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="What is your birth of date?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/birth_logo" />
+
+    <NumberPicker
+        android:id="@+id/birth_number_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/birth_tv_title" />
+
+    <Button
+        android:id="@+id/birth_btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/birth_number_picker"
+        app:layout_constraintVertical_bias="0.355"
+        tools:layout_editor_absoluteX="0dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
