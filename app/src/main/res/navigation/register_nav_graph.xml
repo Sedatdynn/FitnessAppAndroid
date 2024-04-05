@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/register_nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_nav_graph"
+    app:startDestination="@id/registerFragment">
 
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.fitnessapp.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_genderFragment"
+            app:destination="@id/genderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/genderFragment"
+        android:name="com.example.fitnessapp.GenderFragment"
+        android:label="fragment_gender"
+        tools:layout="@layout/fragment_gender" >
+        <action
+            android:id="@+id/action_genderFragment_to_birthDateFragment"
+            app:destination="@id/birthDateFragment" />
+        <action
+            android:id="@+id/action_genderFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/birthDateFragment"
+        android:name="com.example.fitnessapp.BirthDateFragment"
+        android:label="fragment_birth_date"
+        tools:layout="@layout/fragment_birth_date" >
+        <action
+            android:id="@+id/action_birthDateFragment_to_mobilityFragment"
+            app:destination="@id/mobilityFragment" />
+        <action
+            android:id="@+id/action_birthDateFragment_to_genderFragment"
+            app:destination="@id/genderFragment" />
+        <action
+            android:id="@+id/action_birthDateFragment_to_mobilityFragment2"
+            app:destination="@id/mobilityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mobilityFragment"
+        android:name="com.example.fitnessapp.MobilityFragment"
+        android:label="fragment_mobility"
+        tools:layout="@layout/fragment_mobility" >
+        <action
+            android:id="@+id/action_mobilityFragment_to_heightFragment"
+            app:destination="@id/heightFragment" />
+        <action
+            android:id="@+id/action_mobilityFragment_to_heightFragment2"
+            app:destination="@id/heightFragment" />
+        <action
+            android:id="@+id/action_mobilityFragment_to_birthDateFragment"
+            app:destination="@id/birthDateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/heightFragment"
+        android:name="com.example.fitnessapp.HeightFragment"
+        android:label="fragment_height"
+        tools:layout="@layout/fragment_height" >
+        <action
+            android:id="@+id/action_heightFragment_to_weightFragment"
+            app:destination="@id/weightFragment" />
+        <action
+            android:id="@+id/action_heightFragment_to_mobilityFragment"
+            app:destination="@id/mobilityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weightFragment"
+        android:name="com.example.fitnessapp.WeightFragment"
+        android:label="fragment_weight"
+        tools:layout="@layout/fragment_weight" >
+        <action
+            android:id="@+id/action_weightFragment_to_heightFragment"
+            app:destination="@id/heightFragment" />
+    </fragment>
 </navigation>

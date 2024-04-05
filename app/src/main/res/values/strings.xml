@@ -4,4 +4,6 @@
     <string name="fit_text">"Fitness Is The Key"</string>
     <string name="sign_email_text">"Sign in with Email"</string>
     <string name="sign_google_text">"Sign in with Google"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

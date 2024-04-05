@@ -7,4 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".feature.auth.register.view.RegisterActivity">
 
+    <fragment
+        android:id="@+id/register_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/register_nav_graph" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

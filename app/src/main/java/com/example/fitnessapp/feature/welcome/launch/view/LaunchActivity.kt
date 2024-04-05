@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fitnessapp.databinding.ActivityLaunchBinding
 import com.example.fitnessapp.feature.auth.login.LoginActivity
+import com.example.fitnessapp.feature.auth.register.view.RegisterActivity
 
 class LaunchActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLaunchBinding
@@ -15,6 +16,10 @@ class LaunchActivity : AppCompatActivity() {
 
         binding.launchBtnEmail.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+        binding.launchTvCreateAccount.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 

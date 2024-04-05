@@ -53,19 +53,19 @@
         app:layout_constraintTop_toBottomOf="@+id/launch_btn_email" />
 
     <TextView
-        android:id="@+id/not_have_account"
+        android:id="@+id/launch_not_have_account"
         style="@style/MediumTitleTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:text="Don't have an account?"
-        app:layout_constraintEnd_toStartOf="@+id/tv_create_account"
+        app:layout_constraintEnd_toStartOf="@+id/launch_tv_create_account"
         app:layout_constraintStart_toStartOf="@id/main"
         app:layout_constraintTop_toBottomOf="@+id/launch_btn_google" />
 
     <TextView
-        android:id="@+id/tv_create_account"
+        android:id="@+id/launch_tv_create_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -74,7 +74,7 @@
         android:textColor="@color/design_default_color_primary"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/main"
-        app:layout_constraintStart_toEndOf="@+id/not_have_account"
+        app:layout_constraintStart_toEndOf="@+id/launch_not_have_account"
         app:layout_constraintTop_toBottomOf="@+id/launch_btn_google" />
 
 
