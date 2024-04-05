@@ -13,13 +13,12 @@ class RegisterFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -27,7 +26,6 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onNextClick()
-
     }
 
     private fun onNextClick() {
@@ -36,6 +34,4 @@ class RegisterFragment : Fragment() {
                 .navigate(R.id.action_registerFragment_to_genderFragment)
         }
     }
-
-
 }
