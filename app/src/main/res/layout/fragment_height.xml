@@ -27,20 +27,39 @@
         android:layout_marginTop="8dp"
         android:padding="8dp"
         android:text="How much is your height?"
-        app:layout_constraintBottom_toTopOf="@+id/height_number_picker"
+        app:layout_constraintBottom_toTopOf="@+id/linear_number_picker_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/height_logo" />
 
-    <NumberPicker
-        android:id="@+id/height_number_picker"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linear_number_picker_field"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/height_btn_next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/height_tv_title" />
+        app:layout_constraintTop_toBottomOf="@+id/height_tv_title">
+
+        <NumberPicker
+            android:id="@+id/height_number_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/height_tv_cm"
+            style="@style/LargeTitleTextStyle"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="32dp"
+            android:text="cm" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/height_btn_next"
@@ -51,7 +70,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/height_number_picker"
+        app:layout_constraintTop_toBottomOf="@+id/linear_number_picker_field"
         app:layout_constraintVertical_bias="0.355"
         tools:layout_editor_absoluteX="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

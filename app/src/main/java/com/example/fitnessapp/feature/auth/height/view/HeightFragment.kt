@@ -35,7 +35,6 @@ class HeightFragment : Fragment() {
     }
 
     private fun configureNumberPicker() {
-        val currentYear = Calendar.getInstance().get(Calendar.YEAR)
         binding.heightNumberPicker.apply {
             minValue = 140
             maxValue = 220
