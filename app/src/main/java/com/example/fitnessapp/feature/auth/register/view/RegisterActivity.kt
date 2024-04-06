@@ -2,10 +2,8 @@ package com.example.fitnessapp.feature.auth.register.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import com.example.fitnessapp.R
-import com.example.fitnessapp.RegisterFragment
 import com.example.fitnessapp.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {

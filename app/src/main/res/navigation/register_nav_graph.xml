@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.fitnessapp.RegisterFragment"
+        android:name="com.example.fitnessapp.feature.auth.register.view.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/genderFragment"
-        android:name="com.example.fitnessapp.GenderFragment"
+        android:name="com.example.fitnessapp.feature.auth.gender.view.GenderFragment"
         android:label="fragment_gender"
         tools:layout="@layout/fragment_gender" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/birthDateFragment"
-        android:name="com.example.fitnessapp.BirthDateFragment"
+        android:name="com.example.fitnessapp.feature.auth.birth_date.view.BirthDateFragment"
         android:label="fragment_birth_date"
         tools:layout="@layout/fragment_birth_date" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/mobilityFragment"
-        android:name="com.example.fitnessapp.MobilityFragment"
+        android:name="com.example.fitnessapp.feature.auth.mobility.view.MobilityFragment"
         android:label="fragment_mobility"
         tools:layout="@layout/fragment_mobility" >
         <action
@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/heightFragment"
-        android:name="com.example.fitnessapp.HeightFragment"
+        android:name="com.example.fitnessapp.feature.auth.height.view.HeightFragment"
         android:label="fragment_height"
         tools:layout="@layout/fragment_height" >
         <action
@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/weightFragment"
-        android:name="com.example.fitnessapp.WeightFragment"
+        android:name="com.example.fitnessapp.feature.auth.weight.view.WeightFragment"
         android:label="fragment_weight"
         tools:layout="@layout/fragment_weight" >
         <action

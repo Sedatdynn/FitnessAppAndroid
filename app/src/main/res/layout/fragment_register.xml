@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingHorizontal="8dp"
-    tools:context=".RegisterFragment">
+    tools:context=".feature.auth.register.view.RegisterFragment">
 
     <ImageView
         android:id="@+id/register_logo"

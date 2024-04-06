@@ -1,4 +1,4 @@
-package com.example.fitnessapp
+package com.example.fitnessapp.feature.auth.gender.view
 
 import android.graphics.Color
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
+import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentGenderBinding
 
 class GenderFragment : Fragment() {

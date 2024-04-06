@@ -1,4 +1,4 @@
-package com.example.fitnessapp
+package com.example.fitnessapp.feature.auth.register.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentRegisterBinding
 
 class RegisterFragment : Fragment() {

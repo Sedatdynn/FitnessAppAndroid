@@ -24,8 +24,9 @@
         style="@style/LargeTitleTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/fit_text"
+        app:layout_constraintBottom_toTopOf="@+id/launch_btn_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/launch_logo" />
@@ -34,9 +35,10 @@
         android:id="@+id/launch_btn_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:drawableLeft="@drawable/ic_email"
         android:text="@string/sign_email_text"
+        app:layout_constraintBottom_toTopOf="@+id/launch_btn_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/launch_tv_title" />
@@ -48,6 +50,7 @@
         android:layout_marginTop="5dp"
         android:drawableLeft="@drawable/google"
         android:text="@string/sign_google_text"
+        app:layout_constraintBottom_toTopOf="@+id/launch_not_have_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/launch_btn_email" />

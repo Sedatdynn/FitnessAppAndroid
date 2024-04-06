@@ -6,4 +6,13 @@
     <string name="sign_google_text">"Sign in with Google"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--   mobility spinner items>-->
+    <string-array name="mobility_items">
+        <item>Desk job or sedentary</item>
+        <item>Both at the table and standing</item>
+        <item>Those on the move during the day</item>
+        <item>Active employee</item>
+
+    </string-array>
 </resources>

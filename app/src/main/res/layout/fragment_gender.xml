@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingHorizontal="8dp"
-    tools:context=".GenderFragment">
+    tools:context=".feature.auth.gender.view.GenderFragment">
 
     <ImageView
         android:id="@+id/gender_logo"

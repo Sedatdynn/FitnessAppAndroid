@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="8dp"
 
-    tools:context=".BirthDateFragment">
+    tools:context=".feature.auth.birth_date.view.BirthDateFragment">
 
     <ImageView
         android:id="@+id/birth_logo"
