@@ -1,16 +1,20 @@
 package com.example.fitnessapp.feature.auth.login
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.example.firebase.FirebaseManager
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentLoginBinding
 
 
 class LoginFragment : Fragment() {
+     val TAG = "LoginFragment"
+
     private lateinit var binding: FragmentLoginBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +29,18 @@ class LoginFragment : Fragment() {
         binding.loginEtForgot.setOnClickListener {
             Navigation.findNavController(it)
                 .navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+        }
+        binding.loginBtn.setOnClickListener {
+            FirebaseManager.signUp(
+                binding.loginEtEmail.text.toString(), binding.loginEtPassword.text.toString(),
+                onError = { message ->
+                    Log.e(TAG, message)
+                },
+                onSuccess = { uid ->
+                    Log.i(TAG, "uid: $uid")
+                },
+
+                )
         }
     }
 
