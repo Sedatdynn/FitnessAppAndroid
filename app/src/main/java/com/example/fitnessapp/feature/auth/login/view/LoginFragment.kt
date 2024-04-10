@@ -1,4 +1,4 @@
-package com.example.fitnessapp.feature.auth.login
+package com.example.fitnessapp.feature.auth.login.view
 
 import android.os.Bundle
 import android.util.Log
@@ -10,11 +10,11 @@ import androidx.navigation.Navigation
 import com.example.firebase.FirebaseManager
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentLoginBinding
+import com.example.fitnessapp.util.toast.ToastHelper
 
 
 class LoginFragment : Fragment() {
-     val TAG = "LoginFragment"
-
+    val TAG = "LoginFragment"
     private lateinit var binding: FragmentLoginBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,16 +31,16 @@ class LoginFragment : Fragment() {
                 .navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
         binding.loginBtn.setOnClickListener {
-            FirebaseManager.signUp(
+            FirebaseManager.signIn(
                 binding.loginEtEmail.text.toString(), binding.loginEtPassword.text.toString(),
                 onError = { message ->
                     Log.e(TAG, message)
+                    ToastHelper.showToast(it.context, message)
                 },
                 onSuccess = { uid ->
                     Log.i(TAG, "uid: $uid")
-                },
-
-                )
+                }
+            )
         }
     }
 

@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.fitnessapp.feature.auth.login.LoginFragment"
+        android:name="com.example.fitnessapp.feature.auth.login.view.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -91,6 +91,7 @@
         tools:layout="@layout/fragment_weight">
         <action
             android:id="@+id/action_weightFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@+id/launchFragment" />
     </fragment>
 </navigation>

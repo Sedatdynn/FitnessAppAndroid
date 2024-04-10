@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="8dp"
 
-    tools:context=".feature.auth.login.LoginFragment">
+    tools:context=".feature.auth.login.view.LoginFragment">
 
     <ImageView
         android:id="@+id/login_logo"

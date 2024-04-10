@@ -3,11 +3,13 @@ package com.example.firebase
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.FirebaseUser
 
 object FirebaseManager { // Singleton
 
     const val TAG = "FirebaseManager"
     var auth = FirebaseAuth.getInstance()
+    val currentUser = auth.currentUser
 
     //signIn
     fun signIn(

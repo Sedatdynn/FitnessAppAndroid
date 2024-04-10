@@ -2,6 +2,7 @@ package com.example.fitnessapp.feature.welcome.splash.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.firebase.FirebaseManager
 import com.example.fitnessapp.R
 
 class SplashActivity : AppCompatActivity() {
