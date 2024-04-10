@@ -8,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.example.fitnessapp.R
-import com.example.fitnessapp.databinding.FragmentHeightBinding
 import com.example.fitnessapp.databinding.FragmentWeightBinding
-import java.util.Calendar
 
 class WeightFragment : Fragment() {
     private lateinit var binding: FragmentWeightBinding
@@ -45,8 +43,8 @@ class WeightFragment : Fragment() {
     private fun onNextClick() {
         binding.weightBtnNext.setOnClickListener {
             Navigation.findNavController(it)
-            //TODO: ADD NEW NAVIGATION PAGE!!!
-//                .navigate(R.id.actionw)
+            Navigation.findNavController(it)
+                .navigate(R.id.action_weightFragment_to_loginFragment)
         }
     }
 }
