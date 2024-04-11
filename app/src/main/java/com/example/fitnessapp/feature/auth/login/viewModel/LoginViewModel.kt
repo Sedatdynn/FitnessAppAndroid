@@ -42,7 +42,7 @@ class LoginViewModel : ViewModel(), ILoginViewModel {
                 }
             }
         } else {
-            _loginErrorMessage.postValue("Tüm alanları doldurunuz")
+            _loginErrorMessage.postValue("Fill all fields!!")
         }
     }
 

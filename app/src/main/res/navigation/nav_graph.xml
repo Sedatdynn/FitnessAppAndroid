@@ -64,6 +64,12 @@
         <action
             android:id="@+id/action_genderFragment_to_birthDateFragment"
             app:destination="@id/birthDateFragment" />
+        <action
+            android:id="@+id/action_genderFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <argument
+            android:name="userInfo"
+            app:argType="com.example.fitnessapp.feature.auth.register.model.UserModel" />
     </fragment>
     <fragment
         android:id="@+id/birthDateFragment"

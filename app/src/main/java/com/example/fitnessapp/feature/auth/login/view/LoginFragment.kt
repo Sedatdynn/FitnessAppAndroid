@@ -26,7 +26,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
-        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         return binding.root
     }
 
@@ -43,15 +43,17 @@ class LoginFragment : Fragment() {
             loginViewModel.setPassword(password.toString())
         }
 
-        observeLoginError(view.context)
+        observeLoginError()
         observeNavigation(view)
         login()
+
+
     }
 
-    private fun observeLoginError(context: Context) {
+    private fun observeLoginError() {
         loginViewModel.loginErrorMessage.observe(viewLifecycleOwner, Observer { errorMessage ->
             errorMessage?.let {
-                ToastHelper.showToast(context, errorMessage)
+                ToastHelper.showToast(requireContext(), errorMessage)
             }
         })
     }
