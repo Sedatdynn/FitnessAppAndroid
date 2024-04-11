@@ -15,27 +15,27 @@ object FirebaseManager { // Singleton
 
 
     //signIn
-    suspend fun signIn(email: String, password: String): AuthResult  {
+    suspend fun signIn(email: String, password: String): AuthResult {
         return try {
             val result = auth.signInWithEmailAndPassword(email, password).await()
-            AuthResult .Success(result.user!!)
+            AuthResult.Success(result.user!!)
         } catch (e: Exception) {
             Log.e(TAG, "signIn error: ${e.message}")
-            AuthResult .Error(e.message ?: "An error occurred during sign in.")
+            AuthResult.Error(e.message ?: "An error occurred during sign in.")
         }
     }
 
 
     //signUp
-    suspend fun signUp(email: String, password: String): AuthResult  {
+    suspend fun signUp(email: String, password: String): AuthResult {
         return withContext(Dispatchers.IO) {
             try {
                 val result = auth.createUserWithEmailAndPassword(email, password).await()
-                AuthResult .Success(result.user!!)
+                AuthResult.Success(result.user!!)
             } catch (e: Exception) {
                 val errorMessage = e.message ?: "An error occurred during sign up."
                 Log.e(TAG, "signUp error: $errorMessage")
-                AuthResult .Error(errorMessage)
+                AuthResult.Error(errorMessage)
             }
         }
     }
@@ -55,7 +55,7 @@ object FirebaseManager { // Singleton
     }
 }
 
-sealed class AuthResult  {
-    data class Success(val user: FirebaseUser) : AuthResult ()
-    data class Error(val errorMessage: String) : AuthResult ()
+sealed class AuthResult {
+    data class Success(val user: FirebaseUser) : AuthResult()
+    data class Error(val errorMessage: String) : AuthResult()
 }

@@ -1,3 +1,5 @@
 package com.example.fitnessapp.feature.auth.login.model
 
-data class LoginModel(val email: String?, val password: String?)
+data class LoginModel(var email: String?, var password: String?){
+    constructor() : this("", "")
+}

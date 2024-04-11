@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     val nav_version = "2.7.7"
     val lifecycle_version = "2.7.0"
     implementation(libs.androidx.core.ktx)
@@ -64,4 +65,8 @@ dependencies {
     // lifecycle viewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+    //coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
+
 }
