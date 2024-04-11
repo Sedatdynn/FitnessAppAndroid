@@ -30,17 +30,33 @@ class LoginFragment : Fragment() {
             Navigation.findNavController(it)
                 .navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
+
+        login()
+
+    }
+
+    private fun login() {
         binding.loginBtn.setOnClickListener {
-            FirebaseManager.signIn(
-                binding.loginEtEmail.text.toString(), binding.loginEtPassword.text.toString(),
-                onError = { message ->
-                    Log.e(TAG, message)
-                    ToastHelper.showToast(it.context, message)
-                },
-                onSuccess = { uid ->
-                    Log.i(TAG, "uid: $uid")
-                }
-            )
+            if (!binding.loginEtEmail.text.isNullOrEmpty() && !binding.loginEtPassword.text.isNullOrEmpty()) {
+                FirebaseManager.signIn(
+                    binding.loginEtEmail.text.toString(), binding.loginEtPassword.text.toString(),
+                    onError = { message ->
+                        Log.e(TAG, message)
+                        ToastHelper.showToast(it.context, message)
+                    },
+                    onSuccess = { uid ->
+                        Log.i(TAG, "uid: $uid")
+                        Navigation.findNavController(it)
+                            .navigate(R.id.action_loginFragment_to_homeFragment)
+                    }
+                )
+            } else {
+                ToastHelper.showToast(
+                    it.context,
+                    "email and password can't be null!"
+                )
+            }
+
         }
     }
 

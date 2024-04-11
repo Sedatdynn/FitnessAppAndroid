@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("com.google.gms.google-services")
+    id("com.google.gms.google-services") version "4.4.1"
 }
 
 android {
@@ -53,6 +53,9 @@ dependencies {
 
     //firebase module
     implementation(project(mapOf("path" to ":app:firebase")))
+    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+    implementation("com.google.firebase:firebase-auth")
+
     //lottie
     implementation("com.airbnb.android:lottie:6.0.0")
     //navigation component

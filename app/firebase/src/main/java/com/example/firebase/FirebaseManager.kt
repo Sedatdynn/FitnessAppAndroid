@@ -9,7 +9,8 @@ object FirebaseManager { // Singleton
 
     const val TAG = "FirebaseManager"
     var auth = FirebaseAuth.getInstance()
-    val currentUser = auth.currentUser
+    val currentUser: FirebaseUser?
+        get() = auth.currentUser
 
     //signIn
     fun signIn(
@@ -54,4 +55,17 @@ object FirebaseManager { // Singleton
             onError(error.message ?: "Error")
         }
     }
+
+    //sign out
+    fun signOut(onSignOutError: (errorMessage: String?) -> Unit) {
+        try {
+            auth.signOut()
+            onSignOutError(null)
+        } catch (e: Exception) {
+            Log.e(TAG, "Error signing out: ${e.message}")
+            e.message?.let { onSignOutError(it) }
+        }
+    }
+
+
 }

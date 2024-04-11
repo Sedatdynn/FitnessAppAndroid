@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_splashFragment_to_launchFragment"
             app:destination="@id/launchFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/launchFragment"
@@ -33,6 +36,11 @@
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
             app:destination="@id/forgotPasswordFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@+id/launchFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -93,5 +101,17 @@
             android:id="@+id/action_weightFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@+id/launchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.fitnessapp.feature.home.home.view.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@+id/launchFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
