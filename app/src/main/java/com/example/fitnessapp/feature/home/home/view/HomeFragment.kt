@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.firebase.FirebaseManager
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentHomeBinding
 import com.example.fitnessapp.util.toast.ToastHelper
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -29,17 +31,25 @@ class HomeFragment : Fragment() {
 
     private fun onSignOutClick() {
         binding.homeBtnOut.setOnClickListener {
+            lifecycleScope.launch {
+                val result = FirebaseManager.signOut()
+                result.fold(
+                    onSuccess = { success ->
+                        performLogout(it)
 
-            FirebaseManager.signOut { errorMessage ->
-                if (errorMessage != null) {
-                    ToastHelper.showToast(
-                        it.context,
-                        errorMessage.toString()
-                    )
-                } else {
-                    performLogout(it)
-                }
+                    },
+                    onFailure = { exception ->
+                        val errorMessage = exception.message ?: "An error occurred during sign out."
+                        Log.e("Sign out error: ", errorMessage)
+                        ToastHelper.showToast(
+                            it.context,
+                            errorMessage.toString()
+                        )
+                    }
+                )
             }
+
+
         }
     }
 

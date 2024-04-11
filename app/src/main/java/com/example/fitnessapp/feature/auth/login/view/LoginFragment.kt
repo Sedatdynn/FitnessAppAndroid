@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.example.firebase.AuthResult 
 import androidx.navigation.Navigation
 import com.example.firebase.FirebaseManager
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentLoginBinding
 import com.example.fitnessapp.util.toast.ToastHelper
+import kotlinx.coroutines.launch
 
 
 class LoginFragment : Fragment() {
@@ -38,18 +41,29 @@ class LoginFragment : Fragment() {
     private fun login() {
         binding.loginBtn.setOnClickListener {
             if (!binding.loginEtEmail.text.isNullOrEmpty() && !binding.loginEtPassword.text.isNullOrEmpty()) {
-                FirebaseManager.signIn(
-                    binding.loginEtEmail.text.toString(), binding.loginEtPassword.text.toString(),
-                    onError = { message ->
-                        Log.e(TAG, message)
-                        ToastHelper.showToast(it.context, message)
-                    },
-                    onSuccess = { uid ->
-                        Log.i(TAG, "uid: $uid")
-                        Navigation.findNavController(it)
-                            .navigate(R.id.action_loginFragment_to_homeFragment)
+
+                lifecycleScope.launch {
+                    val result = FirebaseManager.signIn(
+                        binding.loginEtEmail.text.toString(),
+                        binding.loginEtPassword.text.toString()
+                    )
+                    when (result) {
+                        is AuthResult .Success -> {
+                            val user = result.user
+                            Log.i(TAG, "email: ${user.email}")
+                            Navigation.findNavController(it)
+                                .navigate(R.id.action_loginFragment_to_homeFragment)
+                        }
+
+                        is AuthResult .Error -> {
+                            val errorMessage = result.errorMessage
+                            Log.e(TAG, errorMessage)
+                            ToastHelper.showToast(it.context, errorMessage)
+                        }
+
+                        else -> {}
                     }
-                )
+                }
             } else {
                 ToastHelper.showToast(
                     it.context,
@@ -61,3 +75,4 @@ class LoginFragment : Fragment() {
     }
 
 }
+
