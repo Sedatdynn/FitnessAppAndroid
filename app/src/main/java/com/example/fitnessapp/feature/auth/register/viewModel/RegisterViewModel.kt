@@ -1,5 +1,6 @@
 package com.example.fitnessapp.feature.auth.register.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -41,12 +42,25 @@ class RegisterViewModel : ViewModel() {
         val username: String? = viewModel.value?.username
         val email: String? = viewModel.value?.email
         val password: String? = viewModel.value?.password
-        if (!username.isNullOrEmpty() && !email.isNullOrEmpty() && !password.isNullOrEmpty()) {
+        if (!username.isNullOrEmpty() && isEmailValid(email ?: "") && isPasswordValid(
+                password ?: ""
+            )
+        ) {
             _navigateToGenderLiveData.postValue(true)
         } else {
             _navigateToGenderLiveData.postValue(false)
-            _registerErrorMessage.postValue("Fill all fields!!")
+            _registerErrorMessage.postValue("Make sure you fill in the relevant fields correctly!")
 
         }
+    }
+
+    private fun isEmailValid(email: String): Boolean {
+        val emailRegex = Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
+        return emailRegex.matches(email)
+    }
+
+    private fun isPasswordValid(password: String): Boolean {
+        val passwordRegex = Regex("^(?=.*[A-Za-z])(?=.*\\d).{6,}\$")
+        return passwordRegex.matches(password)
     }
 }
