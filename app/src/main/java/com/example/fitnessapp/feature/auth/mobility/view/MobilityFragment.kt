@@ -9,18 +9,27 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentMobilityBinding
+import com.example.fitnessapp.feature.auth.birth_date.view.BirthDateFragmentDirections
+import com.example.fitnessapp.feature.auth.register.model.UserModel
 
 
 class MobilityFragment : Fragment() {
     private lateinit var binding: FragmentMobilityBinding
+    private val args: MobilityFragmentArgs by navArgs()
+    private lateinit var user: UserModel
+    val TAG = "MOBILITY FRAGMENT"
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMobilityBinding.inflate(inflater, container, false)
+        user = args.userInfo
+        user = user.copy(mobility = "Desk job or sedentary")
         return binding.root
     }
 
@@ -59,13 +68,20 @@ class MobilityFragment : Fragment() {
 
     private fun logSelectedItem(parent: AdapterView<*>, pos: Int) {
         val selectedItem = parent.getItemAtPosition(pos).toString()
+        user = user.copy(mobility = selectedItem)//set first selected value
         Log.d("Spinner selected item: ", selectedItem)
     }
 
     private fun onNextClick() {
         binding.mobilityBtnNext.setOnClickListener {
+            Log.i(
+                TAG,
+                user.toString()
+            )
+            val action =
+                MobilityFragmentDirections.actionMobilityFragmentToHeightFragment(user)
             Navigation.findNavController(it)
-                .navigate(R.id.action_mobilityFragment_to_heightFragment)
+                .navigate(action)
         }
     }
 }

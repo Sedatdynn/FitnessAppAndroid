@@ -15,4 +15,8 @@ data class UserModel(
     var weight: Int?
 ) : Parcelable {
     constructor() : this("", "", "", "", -1, "", -1, -1)
+
+    override fun toString(): String {
+        return "UserModel(username=$username, email=$email, password=$password, gender=$gender, birthYear=$birthYear, mobility=$mobility, height=$height, weight=$weight)"
+    }
 }

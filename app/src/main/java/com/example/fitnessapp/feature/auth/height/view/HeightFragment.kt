@@ -7,17 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentHeightBinding
+import com.example.fitnessapp.feature.auth.register.model.UserModel
 
 
 class HeightFragment : Fragment() {
     private lateinit var binding: FragmentHeightBinding
+    private val args: HeightFragmentArgs by navArgs()
+    private lateinit var user: UserModel
+    val TAG = "HEIGHT FRAGMENT"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHeightBinding.inflate(layoutInflater, container, false)
+        user = args.userInfo
+        user = user.copy(height = 170) //set initial value as a height
         return binding.root
     }
 
@@ -33,16 +40,19 @@ class HeightFragment : Fragment() {
             maxValue = 220
             value = 170
             setOnValueChangedListener { _, _, newVal ->
-                val selectedHeight = newVal
-                Log.d("SELECTED VALUE: ", selectedHeight.toString())
+                user = user.copy(height = newVal)
+                Log.d("SELECTED VALUE: ", newVal.toString())
             }
         }
     }
 
     private fun onNextClick() {
+        Log.i(TAG, user.toString())
         binding.heightBtnNext.setOnClickListener {
+            val action =
+                HeightFragmentDirections.actionHeightFragmentToWeightFragment(user)
             Navigation.findNavController(it)
-                .navigate(R.id.action_heightFragment_to_weightFragment)
+                .navigate(action)
         }
     }
 }

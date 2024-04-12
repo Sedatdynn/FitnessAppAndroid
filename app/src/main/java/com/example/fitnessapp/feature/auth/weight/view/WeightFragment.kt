@@ -7,11 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentWeightBinding
+import com.example.fitnessapp.feature.auth.register.model.UserModel
 
 class WeightFragment : Fragment() {
     private lateinit var binding: FragmentWeightBinding
+    private val args: WeightFragmentArgs by navArgs()
+    private lateinit var user: UserModel
+    val TAG = "WEIGHT FRAGMENT"
 
 
     override fun onCreateView(
@@ -19,6 +24,8 @@ class WeightFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentWeightBinding.inflate(layoutInflater, container, false)
+        user = args.userInfo
+        user = user.copy(weight = 75) // set initial value as a weight
         return binding.root
     }
 
@@ -34,13 +41,14 @@ class WeightFragment : Fragment() {
             maxValue = 220
             value = 75
             setOnValueChangedListener { _, _, newVal ->
-                val selectedweight = newVal
-                Log.d("SELECTED VALUE: ", selectedweight.toString())
+                user = user.copy(weight = newVal)
+                Log.d("SELECTED VALUE: ", newVal.toString())
             }
         }
     }
 
     private fun onNextClick() {
+        Log.d(TAG, user.toString())
         binding.weightBtnNext.setOnClickListener {
             Navigation.findNavController(it)
             Navigation.findNavController(it)

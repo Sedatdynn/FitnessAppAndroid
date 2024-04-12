@@ -2,7 +2,6 @@ package com.example.fitnessapp.feature.auth.gender.view
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -44,7 +43,6 @@ class GenderFragment : Fragment() {
 
         }
         binding.genderBtnNext.setOnClickListener {
-            Log.i("user gender: ", user.gender.toString())
             if (!user.gender.isNullOrEmpty()) {
                 val action = GenderFragmentDirections.actionGenderFragmentToBirthDateFragment(user)
                 Navigation.findNavController(it)

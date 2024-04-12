@@ -103,6 +103,9 @@
         <action
             android:id="@+id/action_heightFragment_to_weightFragment"
             app:destination="@id/weightFragment" />
+        <argument
+            android:name="userInfo"
+            app:argType="com.example.fitnessapp.feature.auth.register.model.UserModel" />
     </fragment>
     <fragment
         android:id="@+id/weightFragment"
@@ -113,6 +116,9 @@
             android:id="@+id/action_weightFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@+id/launchFragment" />
+        <argument
+            android:name="userInfo"
+            app:argType="com.example.fitnessapp.feature.auth.register.model.UserModel" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"

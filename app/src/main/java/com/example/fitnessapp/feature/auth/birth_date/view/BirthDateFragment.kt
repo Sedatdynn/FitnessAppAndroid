@@ -16,6 +16,7 @@ class BirthDateFragment : Fragment() {
     private lateinit var binding: FragmentBirthDateBinding
     private val args: BirthDateFragmentArgs by navArgs()
     private lateinit var user: UserModel
+    val TAG = "BIRTH DATE FRAGMENT"
 
 
     override fun onCreateView(
@@ -26,8 +27,8 @@ class BirthDateFragment : Fragment() {
         user = args.userInfo
         user = user.copy(birthYear = 1998)//set first selected value
         Log.i(
-            "user",
-            "${user.username} ${user.email}, ${user.password}, ${user.gender}, ${user.birthYear}"
+            TAG,
+            user.toString()
         )
         return binding.root
     }
