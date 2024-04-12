@@ -13,11 +13,12 @@ data class UserModel(
     var birthYear: Int?,
     var mobility: String?,
     var height: Int?,
-    var weight: Int?
+    var weight: Int?,
+    var userRightPoint: Int?
 ) : Parcelable {
-    constructor() : this("", "", "", "", -1, "", -1, -1)
+    constructor() : this("", "", "", "", -1, "", -1, -1, -1)
 
     override fun toString(): String {
-        return "UserModel(username=$username, email=$email, password=$password, gender=$gender, birthYear=$birthYear, mobility=$mobility, height=$height, weight=$weight)"
+        return "UserModel(username=$username, email=$email, password=$password, gender=$gender, birthYear=$birthYear, mobility=$mobility, height=$height, weight=$weight, userRightPoint=$userRightPoint)"
     }
 }

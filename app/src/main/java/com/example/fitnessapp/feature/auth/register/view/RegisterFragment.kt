@@ -50,7 +50,7 @@ class RegisterFragment : Fragment() {
                 val username = binding.registerEtUsername.text.toString()
                 val email = binding.registerEtEmail.text.toString()
                 val password = binding.registerEtPassword.text.toString()
-                val user = UserModel(username, email, password, "", -1, "", -1, -1)
+                val user = UserModel(username, email, password, "", -1, "", -1, -1, -1)
                 val action = RegisterFragmentDirections.actionRegisterFragmentToGenderFragment(user)
                 Navigation.findNavController(view)
                     .navigate(action)

@@ -32,6 +32,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weight_logo" />
 
+    <ProgressBar
+        android:id="@+id/weight_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:progressTint="@color/accent"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/weight_tv_title"
+        app:layout_constraintBottom_toTopOf="@+id/linear_number_picker_field"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
     <LinearLayout
         android:id="@+id/linear_number_picker_field"
         android:layout_width="match_parent"

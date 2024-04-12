@@ -6,20 +6,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleCoroutineScope
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
-import com.example.firebase.FirebaseManager
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentWeightBinding
+import com.example.fitnessapp.feature.auth.weight.viewModel.WeightViewModel
+import com.example.fitnessapp.util.toast.ToastHelper
 import com.example.model.UserModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+
 
 class WeightFragment : Fragment() {
     private lateinit var binding: FragmentWeightBinding
+    private lateinit var weightViewModel: WeightViewModel
+
     private val args: WeightFragmentArgs by navArgs()
     private lateinit var user: UserModel
     val TAG = "WEIGHT FRAGMENT"
@@ -30,6 +31,7 @@ class WeightFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentWeightBinding.inflate(layoutInflater, container, false)
+        weightViewModel = ViewModelProvider(this)[WeightViewModel::class.java]
         user = args.userInfo
         user = user.copy(weight = 75) // set initial value as a weight
         return binding.root
@@ -39,6 +41,9 @@ class WeightFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         configureNumberPicker()
         onNextClick()
+        observeErrorMessage()
+        observeIsLoading()
+        observeIsCompleted(view)
     }
 
     private fun configureNumberPicker() {
@@ -55,13 +60,52 @@ class WeightFragment : Fragment() {
 
     private fun onNextClick() {
         Log.d(TAG, user.toString())
-        binding.weightBtnNext.setOnClickListener {
-            //TODO: create viewModel for weight fragment, if no error navigate to login!
-            lifecycleScope.launch(Dispatchers.IO) {
-                FirebaseManager.saveUser(user)
+        if (weightViewModel.isLoading.value == false) {
+            binding.weightBtnNext.setOnClickListener {
+                //TODO: create viewModel for weight fragment, if no error navigate to login!
+                weightViewModel.calculateTotalPoints(user)
             }
-//            Navigation.findNavController(it)
-//                .navigate(R.id.action_weightFragment_to_loginFragment)
         }
+    }
+
+    // observe error message
+    private fun observeErrorMessage() {
+        weightViewModel.errorMessage.observe(viewLifecycleOwner, Observer { errorMessage ->
+            errorMessage?.let {
+                ToastHelper.showToast(requireContext(), errorMessage)
+            }
+        })
+    }
+
+    private fun observeIsCompleted(view: View) {
+        weightViewModel.isCompleted.observe(viewLifecycleOwner, Observer { isCompleted ->
+            if (isCompleted) {
+                ToastHelper.showToast(
+                    requireContext(),
+                    "Your registration has been completed successfully."
+                )
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_weightFragment_to_loginFragment)
+
+            }
+        })
+    }
+
+    private fun observeIsLoading() {
+        weightViewModel.isLoading.observe(viewLifecycleOwner, Observer { isLoading ->
+            if (isLoading) {
+                setButtonEnabled(false)
+                binding.weightProgress.visibility = View.VISIBLE
+            } else {
+                binding.weightProgress.visibility = View.INVISIBLE
+                setButtonEnabled(true)
+            }
+        })
+    }
+
+
+    // set disable button while registration
+    private fun setButtonEnabled(isEnabled: Boolean) {
+        binding.weightBtnNext.isEnabled = isEnabled
     }
 }

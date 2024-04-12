@@ -11,6 +11,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentGenderBinding
+import com.example.fitnessapp.util.enums.GenderEnum
 import com.example.fitnessapp.util.toast.ToastHelper
 import com.example.model.UserModel
 
@@ -34,12 +35,12 @@ class GenderFragment : Fragment() {
         val selectedColor = ContextCompat.getColor(requireContext(), R.color.accent)
         binding.genderFemaleIcon.setOnClickListener {
             setGenderIconColors(Color.WHITE, selectedColor)
-            user = user.copy(gender = "female")
+            user = user.copy(gender = GenderEnum.Female.name)
 
         }
         binding.genderMaleIcon.setOnClickListener {
             setGenderIconColors(selectedColor, Color.WHITE)
-            user = user.copy(gender = "male")
+            user = user.copy(gender = GenderEnum.Male.name)
 
         }
         binding.genderBtnNext.setOnClickListener {

@@ -34,7 +34,7 @@ object FirebaseManager { // Singleton
 
 
     //signUp
-    suspend fun signUp(email: String, password: String): AuthResult {
+    private suspend fun signUp(email: String, password: String): AuthResult {
         return withContext(Dispatchers.IO) {
             try {
                 val result = auth.createUserWithEmailAndPassword(email, password).await()
