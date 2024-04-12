@@ -1,10 +1,8 @@
 package com.example.fitnessapp.feature.auth.register.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.fitnessapp.feature.auth.login.model.LoginModel
 import com.example.fitnessapp.feature.auth.register.model.UserModel
 
 class RegisterViewModel : ViewModel() {
@@ -44,7 +42,6 @@ class RegisterViewModel : ViewModel() {
         val email: String? = viewModel.value?.email
         val password: String? = viewModel.value?.password
         if (!username.isNullOrEmpty() && !email.isNullOrEmpty() && !password.isNullOrEmpty()) {
-            val userModel = UserModel(username, email, password, "", -1, "", -1, -1)
             _navigateToGenderLiveData.postValue(true)
         } else {
             _navigateToGenderLiveData.postValue(false)
@@ -52,5 +49,4 @@ class RegisterViewModel : ViewModel() {
 
         }
     }
-
 }

@@ -79,6 +79,9 @@
         <action
             android:id="@+id/action_birthDateFragment_to_mobilityFragment"
             app:destination="@id/mobilityFragment" />
+        <argument
+            android:name="userInfo"
+            app:argType="com.example.fitnessapp.feature.auth.register.model.UserModel" />
     </fragment>
     <fragment
         android:id="@+id/mobilityFragment"
@@ -88,6 +91,9 @@
         <action
             android:id="@+id/action_mobilityFragment_to_heightFragment"
             app:destination="@id/heightFragment" />
+        <argument
+            android:name="userInfo"
+            app:argType="com.example.fitnessapp.feature.auth.register.model.UserModel" />
     </fragment>
     <fragment
         android:id="@+id/heightFragment"

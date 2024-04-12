@@ -8,17 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentGenderBinding
-import com.example.fitnessapp.feature.auth.register.viewModel.RegisterViewModel
+import com.example.fitnessapp.feature.auth.register.model.UserModel
+import com.example.fitnessapp.util.toast.ToastHelper
 
 class GenderFragment : Fragment() {
     private lateinit var binding: FragmentGenderBinding
-    private lateinit var registerViewModel: RegisterViewModel
     private val args: GenderFragmentArgs by navArgs()
+    private lateinit var user: UserModel
 
 
     override fun onCreateView(
@@ -26,12 +26,7 @@ class GenderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentGenderBinding.inflate(inflater, container, false)
-        registerViewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
-        var user = args.userInfo
-        user = user.copy(password = "123456")
-        Log.i("user", user.email.toString())
-        Log.i("user", user.username.toString())
-        Log.i("user", user.password.toString())
+        user = args.userInfo
         return binding.root
     }
 
@@ -40,13 +35,23 @@ class GenderFragment : Fragment() {
         val selectedColor = ContextCompat.getColor(requireContext(), R.color.accent)
         binding.genderFemaleIcon.setOnClickListener {
             setGenderIconColors(Color.WHITE, selectedColor)
+            user = user.copy(gender = "female")
+
         }
         binding.genderMaleIcon.setOnClickListener {
             setGenderIconColors(selectedColor, Color.WHITE)
+            user = user.copy(gender = "male")
+
         }
         binding.genderBtnNext.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(R.id.action_genderFragment_to_birthDateFragment)
+            Log.i("user gender: ", user.gender.toString())
+            if (!user.gender.isNullOrEmpty()) {
+                val action = GenderFragmentDirections.actionGenderFragmentToBirthDateFragment(user)
+                Navigation.findNavController(it)
+                    .navigate(action)
+            } else {
+                ToastHelper.showToast(it.context, "Make sure that you have selected your sex!!")
+            }
         }
     }
 
