@@ -6,11 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.example.firebase.FirebaseManager
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentWeightBinding
-import com.example.fitnessapp.feature.auth.register.model.UserModel
+import com.example.model.UserModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class WeightFragment : Fragment() {
     private lateinit var binding: FragmentWeightBinding
@@ -50,9 +56,12 @@ class WeightFragment : Fragment() {
     private fun onNextClick() {
         Log.d(TAG, user.toString())
         binding.weightBtnNext.setOnClickListener {
-            Navigation.findNavController(it)
-            Navigation.findNavController(it)
-                .navigate(R.id.action_weightFragment_to_loginFragment)
+            //TODO: create viewModel for weight fragment, if no error navigate to login!
+            lifecycleScope.launch(Dispatchers.IO) {
+                FirebaseManager.saveUser(user)
+            }
+//            Navigation.findNavController(it)
+//                .navigate(R.id.action_weightFragment_to_loginFragment)
         }
     }
 }

@@ -56,6 +56,8 @@ dependencies {
 
     //firebase module
     implementation(project(mapOf("path" to ":app:firebase")))
+    //model module
+    implementation(project(mapOf("path" to ":app:model")))
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
     implementation("com.google.firebase:firebase-auth")
 

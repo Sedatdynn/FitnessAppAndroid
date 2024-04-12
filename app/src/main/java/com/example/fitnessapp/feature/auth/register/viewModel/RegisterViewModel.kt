@@ -1,10 +1,9 @@
 package com.example.fitnessapp.feature.auth.register.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.fitnessapp.feature.auth.register.model.UserModel
+import com.example.model.UserModel
 
 class RegisterViewModel : ViewModel() {
     val TAG = "RegisterViewModel"

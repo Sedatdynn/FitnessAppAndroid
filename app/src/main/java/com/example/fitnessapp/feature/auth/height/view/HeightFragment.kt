@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
-import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentHeightBinding
-import com.example.fitnessapp.feature.auth.register.model.UserModel
+import com.example.model.UserModel
 
 
 class HeightFragment : Fragment() {

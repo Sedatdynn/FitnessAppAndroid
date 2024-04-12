@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.fitnessapp.databinding.FragmentBirthDateBinding
-import com.example.fitnessapp.feature.auth.register.model.UserModel
+import com.example.model.UserModel
 import java.util.Calendar
 
 class BirthDateFragment : Fragment() {

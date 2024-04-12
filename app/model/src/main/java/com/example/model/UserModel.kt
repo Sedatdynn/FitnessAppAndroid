@@ -1,4 +1,5 @@
-package com.example.fitnessapp.feature.auth.register.model
+package com.example.model
+
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

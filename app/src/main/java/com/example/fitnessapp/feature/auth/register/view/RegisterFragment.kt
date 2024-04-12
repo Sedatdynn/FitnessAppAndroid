@@ -10,9 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.fitnessapp.databinding.FragmentRegisterBinding
-import com.example.fitnessapp.feature.auth.register.model.UserModel
 import com.example.fitnessapp.feature.auth.register.viewModel.RegisterViewModel
 import com.example.fitnessapp.util.toast.ToastHelper
+import com.example.model.UserModel
 
 class RegisterFragment : Fragment() {
     private lateinit var registerViewModel: RegisterViewModel

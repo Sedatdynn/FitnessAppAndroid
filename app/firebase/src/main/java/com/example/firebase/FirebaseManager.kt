@@ -1,8 +1,12 @@
 package com.example.firebase
 
+import android.annotation.SuppressLint
 import android.util.Log
+import com.example.model.UserModel
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -10,6 +14,9 @@ import kotlinx.coroutines.withContext
 object FirebaseManager { // Singleton
     const val TAG = "FirebaseManager"
     var auth = FirebaseAuth.getInstance()
+
+    @SuppressLint("StaticFieldLeak")
+    private val db = Firebase.firestore
     val currentUser: FirebaseUser?
         get() = auth.currentUser
 
@@ -53,6 +60,25 @@ object FirebaseManager { // Singleton
             }
         }
     }
+
+    //save data
+    suspend fun saveUser(user: UserModel): Result<Boolean> {
+        signUp(user.email!!, user.password!!)
+        val currentUserUid = auth.currentUser?.uid
+        if (currentUserUid.isNullOrEmpty()) {
+            return Result.failure(Exception("User is not authenticated"))
+        }
+        return try {
+            val usersRef = db.collection("users")
+            usersRef.document(currentUserUid).set(user).await()
+            Log.d(TAG, "User successfully added to Firestore")
+            Result.success(true)
+        } catch (e: Exception) {
+            Log.e(TAG, "Error adding user to Firestore: ${e.message}", e)
+            Result.failure(e)
+        }
+    }
+
 }
 
 sealed class AuthResult {

@@ -69,7 +69,7 @@
             app:destination="@id/registerFragment" />
         <argument
             android:name="userInfo"
-            app:argType="com.example.fitnessapp.feature.auth.register.model.UserModel" />
+            app:argType="com.example.model.UserModel" />
     </fragment>
     <fragment
         android:id="@+id/birthDateFragment"
@@ -81,7 +81,7 @@
             app:destination="@id/mobilityFragment" />
         <argument
             android:name="userInfo"
-            app:argType="com.example.fitnessapp.feature.auth.register.model.UserModel" />
+            app:argType="com.example.model.UserModel" />
     </fragment>
     <fragment
         android:id="@+id/mobilityFragment"
@@ -93,7 +93,7 @@
             app:destination="@id/heightFragment" />
         <argument
             android:name="userInfo"
-            app:argType="com.example.fitnessapp.feature.auth.register.model.UserModel" />
+            app:argType="com.example.model.UserModel" />
     </fragment>
     <fragment
         android:id="@+id/heightFragment"
@@ -105,7 +105,7 @@
             app:destination="@id/weightFragment" />
         <argument
             android:name="userInfo"
-            app:argType="com.example.fitnessapp.feature.auth.register.model.UserModel" />
+            app:argType="com.example.model.UserModel" />
     </fragment>
     <fragment
         android:id="@+id/weightFragment"
@@ -118,7 +118,7 @@
             app:popUpTo="@+id/launchFragment" />
         <argument
             android:name="userInfo"
-            app:argType="com.example.fitnessapp.feature.auth.register.model.UserModel" />
+            app:argType="com.example.model.UserModel" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"

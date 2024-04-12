@@ -12,8 +12,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentMobilityBinding
-import com.example.fitnessapp.feature.auth.birth_date.view.BirthDateFragmentDirections
-import com.example.fitnessapp.feature.auth.register.model.UserModel
+import com.example.model.UserModel
 
 
 class MobilityFragment : Fragment() {

@@ -11,8 +11,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentGenderBinding
-import com.example.fitnessapp.feature.auth.register.model.UserModel
 import com.example.fitnessapp.util.toast.ToastHelper
+import com.example.model.UserModel
 
 class GenderFragment : Fragment() {
     private lateinit var binding: FragmentGenderBinding
