@@ -63,10 +63,16 @@ object FirebaseManager { // Singleton
 
     //save data
     suspend fun saveUser(user: UserModel): Result<Boolean> {
-        signUp(user.email!!, user.password!!)
+        var errorMessage = ""
+        when (val createUser = signUp(user.email!!, user.password!!)) {
+            is AuthResult.Success -> {}
+            is AuthResult.Error -> {
+                errorMessage = createUser.errorMessage
+            }
+        }
         val currentUserUid = auth.currentUser?.uid
         if (currentUserUid.isNullOrEmpty()) {
-            return Result.failure(Exception("User is not authenticated"))
+            return Result.failure(Exception(errorMessage))
         }
         return try {
             val usersRef = db.collection("users")

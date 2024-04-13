@@ -1,54 +1,45 @@
 package com.example.fitnessapp.feature.auth.register.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.model.UserModel
 
 class RegisterViewModel : ViewModel() {
-    val TAG = "RegisterViewModel"
-
-    private val viewModel: MutableLiveData<UserModel> by lazy {
-        MutableLiveData<UserModel>()
-    }
-
+    private val TAG = "RegisterViewModel"
     private val _registerErrorMessage = MutableLiveData<String>()
     val registerErrorMessage: LiveData<String> get() = _registerErrorMessage
 
-
-    private val _navigateToGenderLiveData = MutableLiveData<Boolean>(false)
-
-    val navigateGenderLiveData: LiveData<Boolean> get() = _navigateToGenderLiveData
+    private val _email = MutableLiveData<String>()
+    val email: LiveData<String> get() = _email
+    private val _username = MutableLiveData<String>()
+    val username: LiveData<String> get() = _username
+    private val _password = MutableLiveData<String>()
+    val password: LiveData<String> get() = _password
     fun setUsername(username: String) {
-        val currentModel = viewModel.value ?: UserModel()
-        currentModel.username = username
-        viewModel.value = currentModel
+        _username.value = username
     }
 
     fun setEmail(email: String) {
-        val currentModel = viewModel.value ?: UserModel()
-        currentModel.email = email
-        viewModel.value = currentModel
+        _email.value = email
     }
 
     fun setPassword(password: String) {
-        val currentModel = viewModel.value ?: UserModel()
-        currentModel.password = password
-        viewModel.value = currentModel
+        _password.value = password
     }
 
-    fun navigateToGender() {
-        val username: String? = viewModel.value?.username
-        val email: String? = viewModel.value?.email
-        val password: String? = viewModel.value?.password
-        if (!username.isNullOrEmpty() && isEmailValid(email ?: "") && isPasswordValid(
-                password ?: ""
+    fun navigateToGender(): Boolean {
+        Log.w(TAG, "${_username.value}, ${_email.value}, ${_password.value}")
+        return if (!_username.value.isNullOrEmpty() && isEmailValid(
+                _email.value ?: ""
+            ) && isPasswordValid(
+                _password.value ?: ""
             )
         ) {
-            _navigateToGenderLiveData.postValue(true)
+            true
         } else {
-            _navigateToGenderLiveData.postValue(false)
             _registerErrorMessage.postValue("Make sure you fill in the relevant fields correctly!")
+            false
 
         }
     }

@@ -29,7 +29,7 @@
         android:gravity="center"
         android:padding="8dp"
         android:text="Select your daily exercise and mobility"
-        app:layout_constraintBottom_toTopOf="@+id/mobility_spinner"
+        app:layout_constraintBottom_toTopOf="@+id/mobility_spinner_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mobility_logo"
@@ -49,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
+            android:minHeight="48dp"
             android:padding="8dp" />
 
         <View

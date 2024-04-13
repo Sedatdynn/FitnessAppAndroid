@@ -45,12 +45,19 @@ class RegisterFragment : Fragment() {
     private fun onNextClick(view: View) {
 
         binding.registerBtnNext.setOnClickListener {
-            registerViewModel.navigateToGender()
-            if (registerViewModel.navigateGenderLiveData.value == true) {
-                val username = binding.registerEtUsername.text.toString()
-                val email = binding.registerEtEmail.text.toString()
-                val password = binding.registerEtPassword.text.toString()
-                val user = UserModel(username, email, password, "", -1, "", -1, -1, -1)
+            val isNavigate = registerViewModel.navigateToGender()
+            if (isNavigate) {
+                val user = UserModel(
+                    registerViewModel.username.value,
+                    registerViewModel.email.value,
+                    registerViewModel.password.value,
+                    "",
+                    -1,
+                    "",
+                    -1,
+                    -1,
+                    -1
+                )
                 val action = RegisterFragmentDirections.actionRegisterFragmentToGenderFragment(user)
                 Navigation.findNavController(view)
                     .navigate(action)
