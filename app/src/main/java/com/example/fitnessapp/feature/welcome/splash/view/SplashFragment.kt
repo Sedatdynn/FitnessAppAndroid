@@ -31,7 +31,6 @@ class SplashFragment : Fragment() {
     private fun checkUser() {
         val userToken = CacheManager.getString(CacheKeys.TOKEN)
         if (!userToken.isNullOrEmpty()) {
-            Log.i(TAG, "userToken: ${userToken.toString()}")
             navigate(R.id.action_splashFragment_to_homeFragment)
         } else {
             Log.i(TAG, "currentUser is null")

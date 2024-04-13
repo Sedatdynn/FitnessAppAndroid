@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import com.example.cache.CacheKeys
+import com.example.cache.CacheManager
 import com.example.firebase.FirebaseManager
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.FragmentHomeBinding
@@ -34,26 +36,24 @@ class HomeFragment : Fragment() {
             lifecycleScope.launch {
                 val result = FirebaseManager.signOut()
                 result.fold(
-                    onSuccess = { success ->
+                    onSuccess = { _ ->
+                        CacheManager.remove(CacheKeys.TOKEN)
                         performLogout(it)
-
                     },
                     onFailure = { exception ->
                         val errorMessage = exception.message ?: "An error occurred during sign out."
                         Log.e("Sign out error: ", errorMessage)
                         ToastHelper.showToast(
-                            it.context,
-                            errorMessage.toString()
+                            requireContext(),
+                            errorMessage
                         )
                     }
                 )
             }
-
-
         }
     }
 
     private fun performLogout(view: View) {
-        Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_loginFragment)
+        Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_launchFragment)
     }
 }

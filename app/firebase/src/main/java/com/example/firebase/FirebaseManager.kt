@@ -99,15 +99,40 @@ object FirebaseManager { // Singleton
         }
     }
 
-    fun sendEmailVerification(user: FirebaseUser) {
+    private fun sendEmailVerification(user: FirebaseUser) {
         user.sendEmailVerification().addOnSuccessListener {
             Log.i(TAG, "sendEmailVerification successful!")
         }.addOnFailureListener { exception ->
             Log.e(TAG, "sendEmailVerification error: ${exception.message}", exception)
         }
-
     }
 
+    // reset password with sending reset password email!
+    suspend fun resetPassword(email: String): Pair<Boolean, String?> {
+        return try {
+            val isEmailRegistered = isEmailRegistered(email.trim())
+            if (isEmailRegistered) {
+                auth.sendPasswordResetEmail(email.trim()).await()
+                true to null
+            } else {
+                Log.e(TAG, "${email.trim()}: Email doesn't exist!!")
+                false to "Email doesn't exist!!"
+            }
+
+        } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
+            false to e.message
+        }
+    }
+
+    //check if email is exist during reset the password!!
+    private suspend fun isEmailRegistered(email: String): Boolean {
+        val querySnapshot = db.collection("users")
+            .whereEqualTo("email", email)
+            .get()
+            .await()
+        return !querySnapshot.isEmpty
+    }
 }
 
 sealed class AuthResult {

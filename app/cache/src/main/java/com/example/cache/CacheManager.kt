@@ -37,6 +37,9 @@ object CacheManager {
         editor.putLong(key.name, value).apply()
     }
 
+    fun remove(key: CacheKeys) {
+        editor.remove(key.name).apply()
+    }
 
     fun getInt(key: CacheKeys, default: Int): Int {
         return preferences.getInt(key.name, default)

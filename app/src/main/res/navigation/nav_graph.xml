@@ -53,9 +53,13 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.example.fitnessapp.feature.auth.forgot_password.ForgotPasswordFragment"
+        android:name="com.example.fitnessapp.feature.auth.forgot_password.view.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
-        tools:layout="@layout/fragment_forgot_password" />
+        tools:layout="@layout/fragment_forgot_password" >
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_launchFragment"
+            app:destination="@id/launchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/genderFragment"
         android:name="com.example.fitnessapp.feature.auth.gender.view.GenderFragment"
@@ -127,8 +131,8 @@
         tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_homeFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
+            android:id="@+id/action_homeFragment_to_launchFragment"
+            app:destination="@id/launchFragment"
             app:popUpTo="@+id/launchFragment"
             app:popUpToInclusive="true" />
     </fragment>
