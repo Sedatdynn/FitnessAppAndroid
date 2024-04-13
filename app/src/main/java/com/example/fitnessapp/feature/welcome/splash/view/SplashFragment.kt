@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.example.cache.CacheKeys
+import com.example.cache.CacheManager
 import com.example.firebase.FirebaseManager
 import com.example.fitnessapp.R
 
@@ -27,9 +29,9 @@ class SplashFragment : Fragment() {
     }
 
     private fun checkUser() {
-        val currentUser = FirebaseManager.currentUser
-        if (currentUser != null) {
-            Log.i(TAG, "currentUser: $currentUser")
+        val userToken = CacheManager.getString(CacheKeys.TOKEN)
+        if (!userToken.isNullOrEmpty()) {
+            Log.i(TAG, "userToken: ${userToken.toString()}")
             navigate(R.id.action_splashFragment_to_homeFragment)
         } else {
             Log.i(TAG, "currentUser is null")

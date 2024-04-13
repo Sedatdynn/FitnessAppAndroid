@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.firebase"
+    namespace = "com.example.cache"
     compileSdk = 34
 
     defaultConfig {
@@ -40,12 +40,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    //firebase
-    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-firestore")
-    //model module
-    implementation(project(mapOf("path" to ":app:model")))
-    //cache module
-    implementation(project(mapOf("path" to ":app:cache")))
 }

@@ -2,6 +2,9 @@ package com.example.firebase
 
 import android.annotation.SuppressLint
 import android.util.Log
+import androidx.constraintlayout.solver.Cache
+import com.example.cache.CacheKeys
+import com.example.cache.CacheManager
 import com.example.model.UserModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -25,7 +28,12 @@ object FirebaseManager { // Singleton
     suspend fun signIn(email: String, password: String): AuthResult {
         return try {
             val result = auth.signInWithEmailAndPassword(email, password).await()
-            if (result.user!!.isEmailVerified) {
+            if (result.user != null && result.user!!.isEmailVerified) {
+                result.user!!.getIdToken(true).addOnSuccessListener {
+                    if (it.token != null) {
+                        CacheManager.saveString(CacheKeys.TOKEN, it.token!!)
+                    }
+                }
                 Log.e(TAG, "completed verification of your email!")
                 AuthResult.Success(result.user!!)
             } else {
