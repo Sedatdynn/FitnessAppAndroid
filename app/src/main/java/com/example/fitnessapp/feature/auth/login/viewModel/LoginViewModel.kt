@@ -26,7 +26,6 @@ class LoginViewModel : ViewModel(), ILoginViewModel {
     override fun signIn() {
         val email: String? = viewModel.value?.email
         val password: String? = viewModel.value?.password
-        Log.i(TAG, "email: $email password: $password")
         if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
             viewModelScope.launch {
                 when (val result = FirebaseManager.signIn(email, password)) {

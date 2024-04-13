@@ -25,13 +25,18 @@ object FirebaseManager { // Singleton
     suspend fun signIn(email: String, password: String): AuthResult {
         return try {
             val result = auth.signInWithEmailAndPassword(email, password).await()
-            AuthResult.Success(result.user!!)
+            if (result.user!!.isEmailVerified) {
+                Log.e(TAG, "completed verification of your email!")
+                AuthResult.Success(result.user!!)
+            } else {
+                Log.e(TAG, "Please complete verification of your email!")
+                AuthResult.Error("Please complete verification of your email!")
+            }
         } catch (e: Exception) {
             Log.e(TAG, "signIn error: ${e.message}")
             AuthResult.Error(e.message ?: "An error occurred during sign in.")
         }
     }
-
 
     //signUp
     private suspend fun signUp(email: String, password: String): AuthResult {
@@ -75,6 +80,7 @@ object FirebaseManager { // Singleton
             return Result.failure(Exception(errorMessage))
         }
         return try {
+            sendEmailVerification(currentUser!!)
             val usersRef = db.collection("users")
             usersRef.document(currentUserUid).set(user).await()
             Log.d(TAG, "User successfully added to Firestore")
@@ -83,6 +89,15 @@ object FirebaseManager { // Singleton
             Log.e(TAG, "Error adding user to Firestore: ${e.message}", e)
             Result.failure(e)
         }
+    }
+
+    fun sendEmailVerification(user: FirebaseUser) {
+        user.sendEmailVerification().addOnSuccessListener {
+            Log.i(TAG, "sendEmailVerification successful!")
+        }.addOnFailureListener { exception ->
+            Log.e(TAG, "sendEmailVerification error: ${exception.message}", exception)
+        }
+
     }
 
 }
