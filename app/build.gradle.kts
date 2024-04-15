@@ -43,6 +43,7 @@ android {
 
 dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.play.services.auth)
     val nav_version = "2.7.7"
     val lifecycle_version = "2.7.0"
     implementation(libs.androidx.core.ktx)
@@ -61,8 +62,6 @@ dependencies {
     //cache module
     implementation(project(mapOf("path" to ":app:cache")))
 
-    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
-    implementation("com.google.firebase:firebase-auth")
 
     //lottie
     implementation("com.airbnb.android:lottie:6.0.0")

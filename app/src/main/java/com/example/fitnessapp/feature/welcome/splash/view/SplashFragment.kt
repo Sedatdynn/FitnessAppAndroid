@@ -12,7 +12,6 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.cache.CacheKeys
 import com.example.cache.CacheManager
-import com.example.firebase.FirebaseManager
 import com.example.fitnessapp.R
 
 

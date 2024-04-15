@@ -2,13 +2,14 @@ package com.example.firebase
 
 import android.annotation.SuppressLint
 import android.util.Log
-import androidx.constraintlayout.solver.Cache
 import com.example.cache.CacheKeys
 import com.example.cache.CacheManager
 import com.example.model.UserModel
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -60,16 +61,30 @@ object FirebaseManager { // Singleton
         }
     }
 
+    // Google Authentication
+    fun googleSignIn(account: GoogleSignInAccount): Result<Boolean> {
+        return try {
+            val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+            auth.signInWithCredential(credential)
+            Log.i(TAG, "Google Sign in authentication SUCCESSFULL!!!${currentUser?.email}}")
+            Result.success(true)
+        } catch (e: Exception) {
+            Log.e(TAG, "Google Sign in authentication failed: ${e.message.toString()}")
+            Result.failure(e)
+        }
+    }
+
     //signOut
     suspend fun signOut(): Result<Boolean> {
         return withContext(Dispatchers.IO) {
             try {
                 auth.signOut()
-                Result.success(true) // Başarılı çıkış işlemi
+                Log.i(TAG, "signOut completed successfully!")
+                Result.success(true)
             } catch (e: Exception) {
                 val errorMessage = e.message ?: "An error occurred during sign out."
                 Log.e(TAG, "signOut error: $errorMessage")
-                Result.failure(e) // Çıkış işlemi sırasında hata oluştu
+                Result.failure(e)
             }
         }
     }

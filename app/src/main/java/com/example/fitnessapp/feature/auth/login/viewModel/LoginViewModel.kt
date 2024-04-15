@@ -30,12 +30,12 @@ class LoginViewModel : ViewModel(), ILoginViewModel {
             viewModelScope.launch {
                 when (val result = FirebaseManager.signIn(email, password)) {
                     is AuthResult.Success -> {
-                        val user = result.user
-                        Log.i(TAG, "USER email: ${user.email}")
+                        Log.i(TAG, "Login completed successfully!")
                         _navigateToHomeLiveData.postValue(true)
                     }
 
                     is AuthResult.Error -> {
+                        Log.i(TAG, "Login error: ${result.errorMessage}")
                         _loginErrorMessage.postValue(result.errorMessage)
                     }
                 }
