@@ -30,7 +30,7 @@ class SplashFragment : Fragment() {
     private fun checkUser() {
         val userToken = CacheManager.getString(CacheKeys.TOKEN)
         if (!userToken.isNullOrEmpty()) {
-            navigate(R.id.action_splashFragment_to_homeFragment)
+            navigate(R.id.action_splashFragment_to_initialFragment)
         } else {
             Log.i(TAG, "currentUser is null")
             navigate(R.id.action_splashFragment_to_launchFragment)

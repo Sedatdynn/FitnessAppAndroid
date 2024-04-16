@@ -70,7 +70,7 @@ class LaunchFragment : Fragment() {
                             signInResult.fold(
                                 onSuccess = { _ ->
                                     Log.i(TAG, "GoogleSignIn successful!")
-                                    findNavController().navigate(R.id.action_launchFragment_to_homeFragment)
+                                    findNavController().navigate(R.id.action_launchFragment_to_initialFragment)
                                 },
                                 onFailure = { exception ->
                                     Log.e(

@@ -31,6 +31,7 @@ class HomeFragment : Fragment() {
         onSignOutClick()
     }
 
+
     private fun onSignOutClick() {
         binding.homeBtnOut.setOnClickListener {
             lifecycleScope.launch {
@@ -52,6 +53,7 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
 
     private fun performLogout(view: View) {
         Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_launchFragment)
