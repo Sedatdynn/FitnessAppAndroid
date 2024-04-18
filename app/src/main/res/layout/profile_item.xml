@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/profile_iv"
+            android:src="@drawable/ic_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="8dp"
+            app:tint="@color/accent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="deneme 123 "
+                android:id="@+id/profile_tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:text="deneme deneme dene!! "
+
+                android:id="@+id/profile_tv_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+              />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

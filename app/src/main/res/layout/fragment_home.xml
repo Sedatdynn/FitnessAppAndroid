@@ -27,7 +27,8 @@
         android:layout_height="200dp"
         android:background="@drawable/button_shape"
         android:backgroundTint="@color/accent"
-        app:layout_constraintBottom_toTopOf="@id/home_btn_out"
+        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toStartOf="@+id/home_guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/home_iv_top">
@@ -67,7 +68,8 @@
         android:background="@drawable/button_shape"
         android:backgroundTint="@color/accent"
         android:padding="12dp"
-        app:layout_constraintBottom_toTopOf="@id/home_btn_out"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/home_left_column"
         app:layout_constraintTop_toBottomOf="@id/home_iv_top">
@@ -106,17 +108,4 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
-
-    <Button
-        android:id="@+id/home_btn_out"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign out"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_left_column"
-        tools:ignore="SpeakableTextPresentCheck" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

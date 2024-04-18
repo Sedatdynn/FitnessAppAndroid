@@ -1,60 +1,115 @@
 package com.example.fitnessapp.feature.home.profile.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cache.CacheKeys
+import com.example.cache.CacheManager
+import com.example.firebase.FirebaseManager
 import com.example.fitnessapp.R
+import com.example.fitnessapp.databinding.FragmentProfileBinding
+import com.example.fitnessapp.feature.home.profile.ProfileAdapter
+import com.example.fitnessapp.feature.home.profile.model.ProfileItemModel
+import com.example.fitnessapp.util.enums.ProfileItemEnum
+import com.example.fitnessapp.util.toast.ToastHelper
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentProfileBinding
+    private lateinit var profileAdapter: ProfileAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private val items = listOf(
+        ProfileItemModel(1, R.drawable.ic_email, "Email", "dayan.sedat1905@gmail.com"),
+        ProfileItemModel(2, R.drawable.ic_theme, "Theme Light", "Change theme mode"),
+        ProfileItemModel(3, R.drawable.ic_bmi, "BMI", "See BMI result"),
+        ProfileItemModel(4, R.drawable.ic_profile, "Update Profile", "Update your information"),
+        ProfileItemModel(5, R.drawable.ic_logout, "LogOut", "Have a good day")
+    )
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        profileAdapter = ProfileAdapter(
+            requireContext(), items
+        )
+        binding.profileRecyclerView.adapter = profileAdapter
+        binding.profileRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        onCategoryClick(view)
+    }
+
+    private fun onCategoryClick(view: View) {
+        profileAdapter.onItemClick = { option ->
+            Log.e("PROFILE>>>>", option.toString())
+            when (option) {
+                ProfileItemEnum.LogOut.value -> logOut()
+
+                ProfileItemEnum.Theme.value -> Log.i(
+                    "PROFILE: ",
+                    "- $option ----> ThemeLight, ${ProfileItemEnum.Theme.value}"
+                )
+
+                ProfileItemEnum.BMI.value -> Log.i(
+                    "PROFILE: ",
+                    "- $option ----> BMI, ${ProfileItemEnum.BMI.value}"
+                )
+
+                ProfileItemEnum.Update.value -> Log.i(
+                    "PROFILE: ",
+                    "- $option ----> UpdateProfile, ${ProfileItemEnum.Update.value}"
+                )
+
+                else -> Log.i(
+                    "PROFILE: ",
+                    "ELSE,- $option  "
+                )
+
             }
+
+        }
+    }
+
+    private fun logOut() {
+        lifecycleScope.launch {
+            val result = FirebaseManager.signOut()
+            result.fold(
+                onSuccess = { _ ->
+                    CacheManager.remove(CacheKeys.TOKEN)
+                    performLogout()
+                },
+                onFailure = { exception ->
+                    val errorMessage = exception.message ?: "An error occurred during sign out."
+                    Log.e("Sign out error: ", errorMessage)
+                    ToastHelper.showToast(
+                        requireContext(),
+                        errorMessage
+                    )
+                }
+            )
+        }
+    }
+
+    private fun performLogout() {
+        findNavController()
+            .navigate(
+                R.id.action_initialFragment_to_launchFragment, null,
+                NavOptions.Builder().setPopUpTo(R.id.initialFragment, true).build()
+            )
     }
 }

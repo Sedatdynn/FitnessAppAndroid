@@ -131,15 +131,7 @@
         android:id="@+id/homeFragment"
         android:name="com.example.fitnessapp.feature.home.home.view.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home">
-
-        <action
-            android:id="@+id/action_homeFragment_to_launchFragment"
-            app:destination="@id/launchFragment"
-            app:popUpTo="@+id/launchFragment"
-            app:popUpToInclusive="true" />
-
-    </fragment>
+        tools:layout="@layout/fragment_home"/>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.fitnessapp.feature.home.profile.view.ProfileFragment"
@@ -155,5 +147,9 @@
         <action
             android:id="@+id/action_initialFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_initialFragment_to_launchFragment"
+            app:destination="@id/launchFragment" />
     </fragment>
+
 </navigation>
